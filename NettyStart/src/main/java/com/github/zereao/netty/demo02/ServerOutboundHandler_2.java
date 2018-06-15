@@ -14,7 +14,7 @@ public class ServerOutboundHandler_2 extends ChannelOutboundHandlerAdapter {
         Number n = (Number) msg;
         System.out.println("ServerOutboundHandler_2 ------- get num = " + n.getNum());
         n.add();
-        ctx.writeAndFlush(n);
-//        ctx.channel().writeAndFlush(n);
+//        ctx.writeAndFlush(n);
+        ctx.channel().writeAndFlush(n);
     }
 }

@@ -15,7 +15,7 @@ public class ServerInboundHandler_1 extends ChannelInboundHandlerAdapter {
         Number n = (Number) msg;
         System.out.println("ServerInboundHandler_1  ---- get num = " + n.getNum());
         n.add();
-        TimeUnit.SECONDS.sleep(1);
+        TimeUnit.SECONDS.sleep(2);
 //        ctx.fireChannelRead(n);
         ctx.writeAndFlush(n);
 //        ctx.channel().writeAndFlush(n);

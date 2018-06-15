@@ -21,7 +21,7 @@ public class Client {
     private String host = "127.0.0.1";
     private int port = 10010;
 
-    private void start() {
+    public void start() {
         EventLoopGroup workGroup = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(workGroup)

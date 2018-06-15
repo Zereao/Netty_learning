@@ -16,12 +16,14 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
  * @author Zereao
  * @version 2018/06/13/16:31
  */
+@SuppressWarnings("WeakerAccess")
 public class Server {
-    private void run() {
+    public void run() {
         // 下面这种写法，很久不见还觉得很陌生
         EventLoopGroup bossGroup = new NioEventLoopGroup(),
                 workGroup = new NioEventLoopGroup();
         ServerBootstrap bootstrap = new ServerBootstrap();
+
         bootstrap.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024)
@@ -33,8 +35,8 @@ public class Server {
                         socketChannel.pipeline().addLast(new ObjectEncoder());
                         socketChannel.pipeline().addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.weakCachingConcurrentResolver(null)));
                         socketChannel.pipeline().addLast(new ServerOutboundHandler_1());
-                        socketChannel.pipeline().addLast(new ServerOutboundHandler_2());
                         socketChannel.pipeline().addLast(new ServerInboundHandler_1());
+                        socketChannel.pipeline().addLast(new ServerOutboundHandler_2());
                         socketChannel.pipeline().addLast(new ServerInboundHandler_2());
                     }
                 });
